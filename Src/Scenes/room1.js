@@ -10,9 +10,11 @@ export function room1(k, roomData) {
 
   const roomLayers = roomData.layers;
 
-  const map = k.add([k.pos(), k.sprite("room1")]);
-  const colliders = [];
-  const positions = [];
+  const map = k.add([k.pos(), k.sprite("room1")]); //Cria a variável para o mapa da sala 1
+  const colliders = []; //Cria a variável para se bater
+  const positions = []; //Cria a variável para as posições
+  const cameras = []; // Cria a variavel camera que armazena um lista vazia "[]".
+
   for (const layer of roomLayers) {
     if (layer.name === "positions") {
       positions.push(...layer.objects) //Coloca uma array dentro de outra array ([[1, 2, 3]]) se não tivesse os 3 pontos. Mas como tem ele fica em uma array só ([1, 2, 3])

@@ -20,6 +20,7 @@ export function makePlayer(k) {
                 this.pos.x = x;
                 this.pos.y = y;
             },
+            
             enablePassthrough() {
                 this.onBeforePhysicsResolve((collision) => { //É uma função do kaboom para colisão
                     if (collision.target.is("passtrhough") && this.isJumping()) { //this.isJumping é uma função do kaboom para ver se está pulando
@@ -27,6 +28,7 @@ export function makePlayer(k) {
                     }
                 });
             },
+
             setControls() { //Faz o jogador se mover
                 this.controlHandlers = []; //Programação orientada a objetos. O this faz referência ao objeto que está executando a função atual
                 
@@ -90,6 +92,24 @@ export function makePlayer(k) {
                     })
                 )
             },
+
+            disableControls() {
+                for( const handler of this.controlHandlers){
+                    handler.cancel()
+                }
+            },
+
+            respawnIfOutObounds(boundValue,
+            destinationName,
+            previousSceneData = {exitName: null}
+            ) {
+                k.onUpdate(() => {
+                if (this.pos.y > boundValue) {
+                    k.go(destinationName, previousSceneData);
+                }
+                });
+            },
+
             setEvents() {
                 this.onFall(() => { //É uma função do kaboom para ver se caiu
                     this.play("fall");

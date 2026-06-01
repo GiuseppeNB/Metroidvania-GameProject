@@ -19,7 +19,7 @@ function initStateManager() {
             return {... state};
         },
         set (property, value) {
-            state[property] = value;
+            state[property] = value; // altera uma propriedade do objeto state.
         },
     };
 }
