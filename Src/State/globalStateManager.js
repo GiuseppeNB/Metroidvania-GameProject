@@ -1,27 +1,27 @@
 export const statePropsEnum = {
-    playerHp: "playerHp",
-    isDoubleJumpUnlocked: "isDoubleJumpUnlocked",
-    playerInBossFight: "playerInBossFight",
-    isBossDefeated: "isBossDefeated",
-}
+  playerHp: "playerHp",
+  isDoubleJumpUnlocked: "isDoubleJumpUnlocked",
+  playerInBossFight: "playerInBossFight",
+  isBossDefeated: "isBossDefeated",
+};
 
 function initStateManager() {
-    const state = {
-        playerHp: 3,
-        maxPlayerHp: 3,
-        isDoubleJumpUnlocked: false,
-        playerIsInBossFight: false,
-        isBossDefeated: false,
-    };
+  const state = {
+    playerHp: 3,
+    maxPlayerHp: 3,
+    isDoubleJumpUnlocked: false,
+    playerInBossFight: false,
+    isBossDefeated: false,
+  };
 
-    return {
-        current() {
-            return {... state};
-        },
-        set (property, value) {
-            state[property] = value; // altera uma propriedade do objeto state.
-        },
-    };
+  return {
+    current() {
+      return { ...state };
+    },
+    set(property, value) {
+      state[property] = value; //Altera uma propiedade do objeto state
+    },
+  };
 }
 
 export const state = initStateManager();

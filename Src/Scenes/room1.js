@@ -1,7 +1,11 @@
 import { makePlayer } from "../Entities/player.js";
-import { setBackgorundColor, setMapColliders } from "./roomUtils.js"
+import { setBackgrundColor, 
+         setMapColliders, 
+         setCameraControls, 
+         setCameraZones, 
+         setExitZones, } from "./roomUtils.js";
 
-export function room1(k, roomData) {
+export async function room1(k, roomData, previousSceneData = { exitName: null }) {
   setBackgorundColor(k, "#a2aed5");
 
   k.camScale(4);
@@ -30,12 +34,16 @@ export function room1(k, roomData) {
 
   const player = map.add(makePlayer(k));
 
+  setCameraControls(k, player, map, roomData);
+
   for (const position of positions) {
     if (position.name === "player") {
       player.setPosition(position.x, position.y);
       player.setControls();
       player.setEvents();
       player.enablePassthrough();
+      player.respawnIfOutOfBounds(1000, "room1");
+      continue;
     }
   }
 }

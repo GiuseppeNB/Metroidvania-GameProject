@@ -1,7 +1,7 @@
-import {state} from "../state/globalStateManager.js";
+import {state} from "../State/globalStateManager.js";
 import { statePropsEnum } from "./globalStateManager.js";
 
-export function setBackgorundColor(k, hexColorCode) {
+export function setBackgrundColor(k, hexColorCode) {
     k.add([
         k.rect(k.width(), k.height()) ,
         k.color(k.Color.fromHex(hexColorCode)),
@@ -9,7 +9,7 @@ export function setBackgorundColor(k, hexColorCode) {
     ]);
 }
 
-export function setMapColliders() {
+export function setMapColliders(k, map, colliders) {
   for (const collider of colliders) {
     if (collider.polygon) {
       const coordinates = [];
@@ -17,7 +17,7 @@ export function setMapColliders() {
         coordinates.push(k.vec2(point.x, point.y));
       }
 
-      Map.add([
+      map.add([
         k.pos(collider.x, collider.y),
         k.area({
           shape: new k.Polygon(coordinates),
@@ -40,7 +40,6 @@ export function setMapColliders() {
         k.opacity(0),
         "boss-barrier",
         {
-
           activate() {
             k.tween(
             this.opacity,
@@ -117,13 +116,13 @@ export function setMapColliders() {
       continue;
     }
 
-    Map.add([
+    map.add([
       k.pos(collider.x, collider.y),
       k.area({
         shape: new k.Rect(k.vec2(0), collider.width, collider.height),
         collisionIgnore: ["collider"],
       }),
-      k.body({isStatic: true}), //Faz acontecer a gravidade
+      k.body({isStatic: true}), 
       "collider",
       collider.type,
     ]);
