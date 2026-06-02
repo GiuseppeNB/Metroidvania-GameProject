@@ -1,4 +1,4 @@
-import { state } from "../State/globalStateManager.js";
+import { state } from "../state/globalStateManager.js";
 
 export function makeCartridge(k, pos) {
   const cartridge = k.make([

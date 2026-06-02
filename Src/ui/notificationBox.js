@@ -10,19 +10,23 @@ export function makeNotificationBox(k, content)
         {
             close() {
                 k.destroy(this);
+
             },
+            
+
+            
         },
     ]);
-
     container.add([
         k.text(content, {
             font: "glyphmesss",
             size: 32,
+
         }),
         k.color(k.Color.fromHex("#eacfba")),
         k.area(),
         k.anchor("center"),
+
     ]);
-    
     return container;
 }
